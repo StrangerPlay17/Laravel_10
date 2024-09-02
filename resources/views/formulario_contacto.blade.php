@@ -18,7 +18,7 @@
     <h1 id="contact-title">Formulario de Contacto</h1>
     
     <form method="POST" action="/contacto-recibe">
-        @csrf
+        @csrf  <!-- Token CSRF  -->
         <!-- Nombre text -->
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>

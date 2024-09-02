@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +26,8 @@ Route::get('contacto/', function () {
     return view('formulario_contacto');
 });
 
-Route::post('contacto-recibe', function () {
-    return "text";
+Route::post('contacto-recibe', function (Request $request) {
+    dd($request->all());
 });
 
 //Route::get('welcome', function () {
