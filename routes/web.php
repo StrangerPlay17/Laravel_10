@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ContactoController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -17,19 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('contacto');
-    //return "Mi proyectito :D";
+    //return view('contacto');
+    return "Mi proyectito Laravel :D";
 });
 
-Route::get('contacto/', function () {
-    //return view('welcome');
-    return view('formulario_contacto');
-});
+Route::get('/contacto', [ContactoController::class, 'formulario']);
+Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);  
 
-Route::post('contacto-recibe', function (Request $request) {
-    dd($request->all());
-});
-
+//dd($request->all());
 //Route::get('welcome', function () {
     //return view('welcome');
 //    return view('welcome');

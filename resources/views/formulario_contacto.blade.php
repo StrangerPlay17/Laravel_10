@@ -16,20 +16,44 @@
     </div>
     
     <h1 id="contact-title">Formulario de Contacto</h1>
+
+     <!-- Sintax Blade donde realiza una validación  -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+ 
+
+
+
     
     <form method="POST" action="/contacto-recibe">
         @csrf  <!-- Token CSRF  -->
         <!-- Nombre text -->
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+        <input type="text" name="nombre" value="{{ old('nombre') }}" required><br><br> <!-- Mantiene el registro del texto en el campo <- -->
+        @error('nombre')    <!-- Error y validación del campo <- -->
+             <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         
         <!-- Correo  email -->
         <label for="correo">Correo:</label>
-        <input type="email" id="correo" name="correo" required><br><br>
+        <input type="email" name="correo" value="{{ old('correo') }}" required><br><br> 
+        @error('correo')
+             <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         
         <!-- Comentario textarea -->
-        <label for="comentario">Comentario:</label><br>
-        <textarea id="comentario" name="comentario" rows="4" cols="50"></textarea><br><br>
+        <label for="mensaje">Comentario:</label><br>
+        <textarea id="mensaje" name="mensaje"rows="4" cols="50">{{ old('mensaje') }}</textarea><br><br>
+        @error('mensaje')
+             <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         
         <!-- Botón para enviar-->
         <button type="submit" class="submit-btn">Enviar</button>
