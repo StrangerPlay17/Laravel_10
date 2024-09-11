@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\NoticiaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,9 +22,23 @@ Route::get('/', function () {
     return "Mi proyectito Laravel :D";
 });
 
-Route::get('/contacto/{tipo_persona?}', [ContactoController::class, 'formulario']); //Ruta que manda parametros por la URL
-Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);
-Route::get('/lista', [ContactoController::class, 'lista']);
+Route::get('/contacto/{tipo_persona?}', [ContactoController::class, 'formulario']); //Ruta que manda parametros por la URL (create)
+Route::post('/contacto-recibe', [ContactoController::class, 'newContact']); // (store)
+Route::get('/lista', [ContactoController::class, 'lista']); //(index)
+
+//Genera todas las URL del CRUD completo mediante "resource" <-
+Route::resource('noticias', NoticiaController::class);
+
+
+//CRUD restante <- 
+
+//borrar -> (delete/destroy)
+//formularioEditar -> (edit)
+//actualizar -> (update)
+//mostrarDetalle -> (show)
+ 
+
+
 
 
 //dd($request->all());
