@@ -15,7 +15,7 @@
         <a href="formulario.html" class="nav-link">Formulario</a>
     </div>
     
-    <h1 id="contact-title">Formulario de Contacto</h1>
+    <h1 id="contact-title">Formulario de Contacto para {{$tipo_persona}} </h1>
 
      <!-- Sintax Blade donde realiza una validación  -->
     @if ($errors->any())
@@ -27,13 +27,14 @@
             </ul>
         </div>
     @endif
- 
-
-
-
-    
     <form method="POST" action="/contacto-recibe">
         @csrf  <!-- Token CSRF  -->
+       
+        @if($tipo_persona == 'cliente') <!-- Sentencia blade ejecutada si el parametro por URL es "cliente"  -->
+           <label for="no_cliente">Número de cliente</label><br>
+           <input type="text" name="no_cliente" id="no_cliente"><br><br>
+        @endif
+
         <!-- Nombre text -->
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" value="{{ old('nombre') }}" required><br><br> <!-- Mantiene el registro del texto en el campo <- -->

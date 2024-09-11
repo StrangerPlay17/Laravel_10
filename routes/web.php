@@ -21,8 +21,10 @@ Route::get('/', function () {
     return "Mi proyectito Laravel :D";
 });
 
-Route::get('/contacto', [ContactoController::class, 'formulario']);
-Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);  
+Route::get('/contacto/{tipo_persona?}', [ContactoController::class, 'formulario']); //Ruta que manda parametros por la URL
+Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);
+Route::get('/lista', [ContactoController::class, 'lista']);
+
 
 //dd($request->all());
 //Route::get('welcome', function () {

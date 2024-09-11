@@ -7,9 +7,23 @@ use Illuminate\Http\Request;
 
 class ContactoController extends Controller
 {
-    public function formulario()
+    public function formulario($tipo_persona = null)
     {
-        return view('formulario_contacto');
+        //dd($tipo_persona);
+        return view('formulario_contacto', [
+            'tipo_persona' => $tipo_persona
+        ]);
+        //return view('formulario_contacto',compact('tipo_persona')); <- Forma opcional 
+
+    }
+
+    public function lista()
+    {
+        $mensajes = Contacto::all(); //Obtiene todos los contactos 
+        //dd($mensajes);
+        return view('lista', [
+            'mensajes' => $mensajes
+        ]);
     }
 
     public function newContact(Request $request) //
@@ -27,7 +41,7 @@ class ContactoController extends Controller
 
         $contacto->save();
         //return "contactito registrado";
-        return redirect('/contacto'); //Redireccion
+        return redirect('/lista'); //Redireccion
 
         return view('formulario_contacto');
     }
